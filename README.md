@@ -1,4 +1,4 @@
-# `xar-bhud`
+# `xar_bhud`
 
 A better hud for Xar.
 
