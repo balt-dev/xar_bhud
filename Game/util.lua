@@ -75,7 +75,7 @@ end
 local g = ga_win_set_char_size
 function ga_win_set_char_size(wid, w, h)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
-	g(wid, w / aspect, h)
+	g(wid, w / aspect * 4 / 3, h)
 end
 
 function txt_r(wid, x, y, txt)

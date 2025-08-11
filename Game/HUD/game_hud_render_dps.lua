@@ -5,13 +5,13 @@ function p.render_dps(wid)
         local dps_str = "DPS: " .. game_str.add_commas(in_dps)
         ga_win_set_front_color(wid, std.vec(0.0, 1.0, 0.0))
         ga_win_set_char_size(wid, 0.02, 0.03)
-        ga_win_txt_center(wid, 0.90, dps_str)
+        ga_win_txt_center(wid, 0.87, dps_str)
     end
     local max_health = ga_get_i("xar.player.health.max")
     local f = in_dps / max_health
     local icon_height = 0.04
     --icon_width is 0.04.
-    local y_min = 0.84
+    local y_min = 0.81
     if( f >= 0.25 and f < 0.5 ) then
         quad_c(wid, 0.48, y_min, 0.52, y_min+icon_height, "icon_skull")
     elseif( f >= 0.5 and f < 1.0 ) then
