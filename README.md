@@ -2,6 +2,10 @@
 
 A better hud for Xar.
 
+## Installation
+
+Click the `Code` button, and click `Download ZIP`. Extract to `Input/Packages/xar_bhud`.
+
 ## Gallery
 
 <img width="1709" height="1033" alt="2025-08-11-003210_hyprshot" src="https://github.com/user-attachments/assets/e0c56923-eab0-4da2-b529-2de86fc27918" />
