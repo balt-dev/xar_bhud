@@ -26,11 +26,11 @@ function p.render_low_health_border(wid)
         end
     end
     if( cur_showing_border ) then
-        --Making a red boarder around the screen.
+        --Making a red border around the screen.
         local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
         local red = std.vec(1.0, 0.0, 0.0)
         local alpha = 0.7
-        local w_thick = 0.03 * aspect
+        local w_thick = 0.05 / aspect
         local h_thick = 0.05
         ga_win_quad_color_alpha(wid, 0.0, 0.0, 1.0, h_thick, red, alpha)
         ga_win_quad_color_alpha(wid, 0.0, 1.0-h_thick, 1.0, 1.0, red, alpha)

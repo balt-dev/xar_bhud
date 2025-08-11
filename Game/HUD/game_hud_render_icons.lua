@@ -116,6 +116,8 @@ function p.render_icons(wid)
         draw_icon "icon_brake"
     end    
 
+    win_hud.txt_col(wid, std.vec(1, 1, 1))
+
     if ga_exists("xar.key_time.yellow") then
         local key_time = ga_get_f("xar.key_time.yellow")
         if (key_time > 0.0) then
@@ -133,6 +135,7 @@ function p.render_icons(wid)
     if ga_exists("xar.key_time.green") then
         local key_time = ga_get_f("xar.key_time.green")
         if (key_time > 0.0) then
+            win_hud.txt_col(wid, std.vec(1, 1, 1))
             draw_labelled_icon("key_green", math.floor(key_time))
         end
     end
@@ -140,6 +143,7 @@ function p.render_icons(wid)
     if ga_exists("xar.key_time.universe") then
         local key_time = ga_get_f("xar.key_time.universe")
         if (key_time > 0.0) then
+            win_hud.txt_col(wid, std.vec(1, 1, 1))
             draw_labelled_icon("ent_credits", math.floor(key_time))
         end
     end
@@ -147,6 +151,7 @@ function p.render_icons(wid)
     if ga_exists("xar.key_time.laser_genesis") then
         local key_time = ga_get_f("xar.key_time.laser_genesis")
         if (key_time > 0.0) then
+            win_hud.txt_col(wid, std.vec(1, 1, 1))
             draw_labelled_icon("key_laser_genesis", math.floor(key_time))
         end
     end
@@ -161,6 +166,7 @@ function p.render_icons(wid)
     if ga_exists("xar.xp_5x_stacking_time") then
         local xp_time = ga_get_f("xar.xp_5x_stacking_time")
         if (xp_time > 0.0) then
+            win_hud.txt_col(wid, std.vec(1, 1, 1))
             draw_labelled_icon("icon_xp_5x", math.floor(xp_time))
         end
     end
@@ -168,24 +174,28 @@ function p.render_icons(wid)
     if ga_exists("xar.damage_5x_stacking_time") then
         local xp_time = ga_get_f("xar.damage_5x_stacking_time")
         if (xp_time > 0.0) then
+            win_hud.txt_col(wid, std.vec(1, 1, 1))
             draw_labelled_icon("icon_damage_5x", math.floor(xp_time))
         end
     end
 
     local invun_time = ga_get_f("xar.invun_stacking_time")
     if( invun_time > 0.0 ) then
+        win_hud.txt_col(wid, std.vec(1, 1, 1))
         draw_labelled_icon("icon_invun", math.floor(invun_time))
     end
 
     --Tracking marker (beacon).
     game_tracking_marker.refresh_attack_display()
     if game_tracking_marker.exists_and_enabled() then
+        win_hud.txt_col(wid, std.vec(1, 1, 1))
         local dist = game_tracking_marker.get_dist()
         local dist_str = game_str.make_3_digit_big(dist)
         draw_labelled_icon("icon_beacon", dist_str)
     end
 
     if ga_exists("xar.emp_end_time") then
+        win_hud.txt_col(wid, std.vec(1, 1, 1))
         local emp_end_time = ga_get_f("xar.emp_end_time")
         local game_time = ga_get_game_time()
         if( emp_end_time > game_time ) then
@@ -199,6 +209,8 @@ function p.render_icons(wid)
     if ga_get_b("xar.player.arcade.inside") then
         draw_icon "icon_arcade"
     end
+  
+    win_hud.txt_col(wid, std.vec(1, 1, 1))
 
     local game_time                 = ga_get_game_time()
     local quasar_drive_end_time     = ga_get_f("xar.player.gun0.quasar_drive_end")

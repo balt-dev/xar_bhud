@@ -12,6 +12,13 @@ function quad_r(wid, left, bottom, right, top, tex)
 	ga_win_quad(wid, left, bottom, right, top, tex)
 end
 
+function cquad_r(wid, left, bottom, right, top, col, alpha)
+	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+	left = 1 - ((1 - left) / aspect)
+	right = 1 - ((1 - right) / aspect)
+	ga_win_quad_color_alpha(wid, left, bottom, right, top, col, alpha)
+end
+
 function quad_c(wid, left, bottom, right, top, tex)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	left = ((1 - ((1 - left) / aspect)) + (left / aspect)) / 2
@@ -19,17 +26,29 @@ function quad_c(wid, left, bottom, right, top, tex)
 	ga_win_quad(wid, left, bottom, right, top, tex)
 end
 
-function bar_c(wid, left, bottom, right, top, bg_r, bg_g, bg_b, bg_a, fg_r, fg_g, fg_b, fg_a, progress)
+function bar_c(wid, left, bottom, right, top, bg, fg, progress, invert)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	left = ((1 - ((1 - left) / aspect)) + (left / aspect)) / 2
 	right = ((1 - ((1 - right) / aspect)) + (right / aspect)) / 2
-	mid = left + (right - left) * progress
-	if progress < 1 then
-		ga_win_quad_color_alpha(wid, mid, bottom, right, top, std.vec(bg_r, bg_b, bg_b), bg_a)
+	if invert then
+		mid = right + (left - right) * progress
+	else
+		mid = left + (right - left) * progress
 	end
-	if progress > 0 then
-		ga_win_quad_color_alpha(wid, left, bottom, mid, top, std.vec(fg_r, fg_b, fg_b), fg_a)
+	if bg and progress < 1 then
+		local bg_r, bg_g, bg_b = table.unpack(bg)
+		ga_win_quad_color_alpha(wid, mid, bottom, right, top, std.vec(bg_r, bg_g, bg_b), bg[4] or 1)
 	end
+	if fg and progress > 0 then
+		local fg_r, fg_g, fg_b = table.unpack(fg)
+		ga_win_quad_color_alpha(wid, left, bottom, mid, top, std.vec(fg_r, fg_g, fg_b), fg[4] or 1)
+	end
+end
+
+function text_c(wid, left, bottom, text)
+	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+	left = ((1 - ((1 - left) / aspect)) + (left / aspect)) / 2
+    ga_win_txt(wid, left, bottom, text)
 end
 
 function quad2_l(wid, left, bottom, right, top, tex1, tex2, p)
@@ -57,4 +76,10 @@ local g = ga_win_set_char_size
 function ga_win_set_char_size(wid, w, h)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	g(wid, w / aspect, h)
+end
+
+function txt_r(wid, x, y, txt)
+	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+	x = 1 - ((1 - x) / aspect)
+	ga_win_txt_center_at_bg(wid, x, y, txt)
 end
