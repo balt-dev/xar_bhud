@@ -25,7 +25,7 @@ function p.render_compass(wid)
     local yaw = math.atan2(camera_look.x, camera_look.y) * 180 / 3.1415926
     ga_win_set_front_color(wid, std.vec(0.0, 1.0, 0.0))
     ga_win_set_char_size(wid, 0.02, 0.03)
-    ga_win_txt_center(wid, 0.96, ("%.2f pitch, %.2f yaw"):format(yaw, pitch))
+    ga_win_txt_center(wid, 0.96, ("%.2f pitch, %.2f yaw"):format(pitch, yaw))
     if dir_str ~= "" then
         ga_win_txt_center(wid, 0.92, dir_str)
     end
