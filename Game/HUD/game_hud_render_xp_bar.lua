@@ -73,5 +73,5 @@ function p.render_xp_bar(wid)
     -- Hive attack
     local hive_frac = game_ment_hive_attack.get_frac()
     local progress = game_ment_hive_attack.get_frac()
-    quad2_c(wid, 0.05, 0.01, 0.95, 0.02, "icon_hive_attack_bar", "icon_hive_attack_bar_back", progress)
+    bar_c(wid, 0.05, 0.01, 0.95, 0.02, {1, 0, 0, 1}, {0, 1, 0, 1}, math.min(progress, 1))
 end
