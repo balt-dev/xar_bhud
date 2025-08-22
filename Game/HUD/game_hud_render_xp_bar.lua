@@ -24,16 +24,16 @@ function p.render_xp_bar(wid)
         win_hud.txt_col(wid, std.vec(0, 0, 0))
         text_c(wid, 0.05+ 0.05, 0.07+0.03, ("%d / %d"):format(health, health_max))
         frac = frac - 1
-        local offset = 0.0025
+        local offset = 0.00125
         local first = true
         while frac > 0 do
             if first then
-                bar_c(wid, 0.05+ 0.05, 0.1+0.03 + offset, 0.45, 0.12+0.03 + offset, nil, {0.4, 0.4, 1, 0.8}, math.min(frac, 1))
-                offset = offset + 0.0225
+                bar_c(wid, 0.05+ 0.05, 0.1+0.03 + offset, 0.45, 0.11+0.03 + offset, nil, {0.4, 0.4, 1, 0.8}, math.min(frac, 1))
+                offset = offset + 0.0125
                 first = false
             else
-                bar_c(wid, 0.05+ 0.05, 0.1+0.03 + offset, 0.45, 0.11+0.03 + offset, nil, {1, 0.1, 1, 0.6}, math.min(frac, 1))
-                offset = offset + 0.0125
+                bar_c(wid, 0.05+ 0.05, 0.1+0.03 + offset, 0.45, 0.105+0.03 + offset, nil, {1, 0.1, 1, 0.6}, math.min(frac, 1))
+                offset = offset + 0.0075
             end
             frac = frac - 1
         end
@@ -47,16 +47,16 @@ function p.render_xp_bar(wid)
         win_hud.txt_col(wid, std.vec(0.1, 0.1, 0.1))
         text_c(wid, 0.55, 0.07+0.03, ("%d / %d"):format(armor, armor_max))
         frac = frac - 1
-        local offset = 0.0025
+        local offset = 0.00125
         local first = true
         while frac > 0 do
             if first then
-                bar_c(wid, 0.55, 0.1+0.03 + offset, 0.95- 0.05, 0.12+0.03 + offset, nil, {0.6, 0.6, 1, 0.8}, math.min(frac, 1))
-                offset = offset + 0.0225
+                bar_c(wid, 0.55, 0.1+0.03 + offset, 0.95- 0.05, 0.11+0.03 + offset, nil, {0.6, 0.6, 1, 0.8}, math.min(frac, 1))
+                offset = offset + 0.0125
                 first = false
             else
-                bar_c(wid, 0.55, 0.1+0.03 + offset, 0.95- 0.05, 0.11+0.03 + offset, nil, {1, 0.4, 1, 0.6}, math.min(frac, 1))
-                offset = offset + 0.0125
+                bar_c(wid, 0.55, 0.1+0.03 + offset, 0.95- 0.05, 0.105+0.03 + offset, nil, {1, 0.4, 1, 0.6}, math.min(frac, 1))
+                offset = offset + 0.0075
             end
             frac = frac - 1
         end

@@ -30,49 +30,65 @@ function p.render_ammo(wid)
     	cquad_r(wid, x_min - 0.03, y_min, x_max - 0.03, y_max, std.vec(0, 0, 0), 0.4)
     end
 
+    local i = 0
+
     for raw_num = 1, 10 do
         local num = raw_num
         if (num == 10) then num = 0 end
 
-        local ammo_x_delta = 0.065
-        local x_min = 0.9
-        local x_max = 0.9 + size
-        local y_min = 1 - (raw_num * 0.085)
-        local y_max = y_min + size
+        if game_can_use.main(num) then
+            i = i + 1
 
-        local cur_wep = ga_get_i("xar.player.cur_wep")
-        if ( (raw_num%10) == cur_wep) then
-            x_min = x_min - 0.03
-            x_max = x_max - 0.03
-        end
+            local ammo_x_delta = 0.065
+            local x_min = 0.9
+            local x_max = 0.9 + size
+            local y_min = 1 - (i * 0.085)
+            local y_max = y_min + size
 
-        local ammo_var = "xar.player.gun" .. num .. ".ammo"
-        local ammo     = ga_get_i(ammo_var)
-        local ammo_max = game_wep_modes.get_ammo_max(num)
+            local cur_wep = ga_get_i("xar.player.cur_wep")
+            if ( (raw_num%10) == cur_wep) then
+                x_min = x_min - 0.03
+                x_max = x_max - 0.03
+            end
 
-        quad_r(wid, x_min, y_min, x_max, y_max, (game_can_use.main(num) and "ammo_gun" .. num) or ("ammo_gun" .. num .. "_grey"))
+            local ammo_var = "xar.player.gun" .. num .. ".ammo"
+            local ammo     = ga_get_i(ammo_var)
+            local ammo_max = game_wep_modes.get_ammo_max(num)
 
-        local col = col_green
-        if     (ammo < ammo_max/4) then col = col_red
-        elseif (ammo < ammo_max/2) then col = col_yellow
-        else                            col = col_green
-        end
-        if ga_get_b("xar.hud.show_ammo") and (not game_genesis.enabled()) then
-            win_hud.txt_col(wid, col)
-        	ga_win_set_char_size(wid, 0.012, 0.024)
-        	local s = game_str.make_3_digit_big(ammo)
-            txt_r(wid, 
-                x_min - 0.01 - (0.012 / 2 * #s),
-                (y_min + y_max) / 2 + 0.015 - 0.012,
-                s
+            quad2_r(
+                wid, x_min, y_min, x_max, y_max, "ammo_gun" .. num, "ammo_gun" .. num .. "_grey",
+                ammo / ammo_max
             )
-            win_hud.txt_col(wid, std.vec(0, 1, 1))
-            local ms = game_str.make_3_digit_big(ammo_max)
-            txt_r(wid, 
-                x_min - 0.01 - (0.012 / 2 * #ms),
-                (y_min + y_max) / 2 - 0.015 - 0.012,
-                ms
-            )
+
+            local col = col_green
+            if     (ammo < ammo_max/4) then col = col_red
+            elseif (ammo < ammo_max/2) then col = col_yellow
+            else                            col = col_green
+            end
+            if ga_get_b("xar.hud.show_ammo") and (not game_genesis.enabled()) then
+                win_hud.txt_col(wid, col)
+            	ga_win_set_char_size(wid, 0.012, 0.024)
+            	local s = game_str.make_3_digit_big(ammo)
+                txt_r(wid,
+                    x_min - 0.01 - (0.012 / 2 * #s),
+                    (y_min + y_max) / 2 + 0.015 - 0.012,
+                    s
+                )
+                win_hud.txt_col(wid, std.vec(0, 1, 1))
+                local ms = game_str.make_3_digit_big(ammo_max)
+                txt_r(wid,
+                    x_min - 0.01 - (0.012 / 2 * #ms),
+                    (y_min + y_max) / 2 - 0.015 - 0.012,
+                    ms
+                )
+                win_hud.txt_col(wid, std.vec(1, 1, 1))
+                local s_raw = tostring(num)
+                txt_r(wid,
+                    x_max - 0.012 * #s_raw,
+                    y_max - 0.025,
+                    s_raw
+                )
+            end
         end
     end
 end
