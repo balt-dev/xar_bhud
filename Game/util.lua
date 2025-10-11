@@ -72,12 +72,6 @@ function quad2_c(wid, left, bottom, right, top, tex1, tex2, p)
 	ga_win_quad_two(wid, left, bottom, right, top, tex1, tex2, p)
 end
 
-local g = ga_win_set_char_size
-function ga_win_set_char_size(wid, w, h)
-	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
-	g(wid, w / aspect * 4 / 3, h)
-end
-
 function txt_r(wid, x, y, txt)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	x = 1 - ((1 - x) / aspect)
