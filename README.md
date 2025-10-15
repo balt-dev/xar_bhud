@@ -10,7 +10,5 @@ Or, if you have `git`, just clone the repo so you can get updates easier.
 
 ## Gallery
 
-<img width="1709" height="1033" alt="2025-08-11-003210_hyprshot" src="https://github.com/user-attachments/assets/e0c56923-eab0-4da2-b529-2de86fc27918" />
-<img width="800" height="600" alt="2025-08-11-002831_hyprshot" src="https://github.com/user-attachments/assets/8396b8c7-0f1f-4f88-a775-e83774c97813" />
-<img width="800" height="600" alt="2025-08-11-002723_hyprshot" src="https://github.com/user-attachments/assets/4a2e74bf-b4df-4e5d-a2ac-56c4ad4e98b0" />
-<img width="2560" height="1047" alt="2025-08-11-002648_hyprshot" src="https://github.com/user-attachments/assets/f2024133-4515-4040-a830-625d8ed79378" />
+<img width="1920" height="1045" alt="image" src="https://github.com/user-attachments/assets/4f0864de-601a-4b45-b563-e159706a09d3" />
+<img width="1920" height="1046" alt="image" src="https://github.com/user-attachments/assets/e77615a9-3db3-408d-9c44-4550c2b65c3a" />
