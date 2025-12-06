@@ -28,7 +28,7 @@ function p.render_gold(wid)
         -- display_gold = gold
         -- if( gold > 99999 ) then display_gold = 99999 end
         local short_str = game_str.make_3_digit_big(gold)
-        txt_r(wid, 
+        text_r(wid, 
             x_min + 0.5 * ammo_width,
             ammo_y_min + ammo_height,
             short_str)

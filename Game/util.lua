@@ -19,6 +19,10 @@ function cquad_r(wid, left, bottom, right, top, col, alpha)
 	ga_win_quad_color_alpha(wid, left, bottom, right, top, col, alpha)
 end
 
+function raw_cquad_r(wid, left, bottom, right, top, col, alpha)
+	ga_win_quad_color_alpha(wid, left, bottom, right, top, col, alpha)
+end
+
 function quad_c(wid, left, bottom, right, top, tex)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	left = ((1 - ((1 - left) / aspect)) + (left / aspect)) / 2
@@ -45,12 +49,6 @@ function bar_c(wid, left, bottom, right, top, bg, fg, progress, invert)
 	end
 end
 
-function text_c(wid, left, bottom, text)
-	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
-	left = ((1 - ((1 - left) / aspect)) + (left / aspect)) / 2
-    ga_win_txt(wid, left, bottom, text)
-end
-
 function quad2_l(wid, left, bottom, right, top, tex1, tex2, p)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	left = left / aspect
@@ -65,6 +63,10 @@ function quad2_r(wid, left, bottom, right, top, tex1, tex2, p)
 	ga_win_quad_two(wid, left, bottom, right, top, tex1, tex2, p)
 end
 
+function raw_quad2_r(wid, left, bottom, right, top, tex1, tex2, p)
+	ga_win_quad_two(wid, left, bottom, right, top, tex1, tex2, p)
+end
+
 function quad2_c(wid, left, bottom, right, top, tex1, tex2, p)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	left = ((1 - ((1 - left) / aspect)) + (left / aspect)) / 2
@@ -72,8 +74,33 @@ function quad2_c(wid, left, bottom, right, top, tex1, tex2, p)
 	ga_win_quad_two(wid, left, bottom, right, top, tex1, tex2, p)
 end
 
-function txt_r(wid, x, y, txt)
+function text_l(wid, x, y, txt)
+	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+	x = 1 - (x / aspect)
+	ga_win_txt_center_at_bg(wid, x, y, txt)
+end
+
+function text_r(wid, x, y, txt)
 	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
 	x = 1 - ((1 - x) / aspect)
 	ga_win_txt_center_at_bg(wid, x, y, txt)
+end
+
+function text_c(wid, x, y, text)
+	local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+	x = ((1 - ((1 - x) / aspect)) + (x / aspect)) / 2
+    ga_win_txt(wid, x, y, text)
+end
+
+function raw_text_l(wid, x, y, txt)
+	x = 1 - x
+	ga_win_txt_center_at_bg(wid, x, y, txt)
+end
+
+function raw_text_r(wid, x, y, txt)
+	ga_win_txt_center_at_bg(wid, x, y, txt)
+end
+
+function raw_text_c(wid, x, y, text)
+    ga_win_txt(wid, c, y, text)
 end

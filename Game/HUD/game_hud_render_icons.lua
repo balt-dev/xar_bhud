@@ -3,6 +3,11 @@ local Y_CLIP = 0.7
 function p.render_icons(wid)
     if not ga_get_b("xar.hud.show_icons") then return end
 
+    local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+    local RAW_CHAR_WIDTH = 0.012
+    local CHAR_WIDTH = RAW_CHAR_WIDTH / aspect
+    ga_win_set_char_size(wid, CHAR_WIDTH, RAW_CHAR_WIDTH*2)
+
     -- Icons.
     local icon_size = 0.1
     local step = icon_size + 0.01
@@ -29,7 +34,6 @@ function p.render_icons(wid)
         q(wid, cur_x, cur_y, cur_x+icon_size, cur_y+icon_size, tex)
         local tx = cur_x + 0.5 * icon_size
         tx = (right and (1 - ((1 - tx) / aspect))) or (tx / aspect)
-        ga_win_set_char_size(wid, 0.012, 0.024)
         ga_win_txt_center_at_bg(wid, 
             tx,
             cur_y + icon_size - 0.012,

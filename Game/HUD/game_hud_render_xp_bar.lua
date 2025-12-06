@@ -2,6 +2,11 @@ function p.render_xp_bar(wid)
     if game_genesis.enabled() then return end
     -- We're repurposing this to do all of the bars.
 
+    local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+    local RAW_CHAR_WIDTH = 0.012
+    local CHAR_WIDTH = RAW_CHAR_WIDTH / aspect
+    ga_win_set_char_size(wid, CHAR_WIDTH, RAW_CHAR_WIDTH*2)
+
     -- XP bar
     if ga_get_b("xar.hud.show_experience") then
         local level = ga_get_i("xar.experience.level")
@@ -11,7 +16,6 @@ function p.render_xp_bar(wid)
         bar_c(wid, 0.05, 0.02, 0.95, 0.06, {0, 0, 0}, {0, 0.7, 0}, progress)
         quad_c(wid, 0, 0.02, 0.04, 0.06, "xp")
         win_hud.txt_col(wid, std.vec(1, 1, 1))
-        ga_win_set_char_size(wid, 0.012, 0.024)
         text_c(wid, 0.05, 0.02, ("Level %d (%d / %d)"):format(level or 0, amount or 0, total or 0))
     end
     if ga_get_b("xar.hud.show_health") then
@@ -20,7 +24,6 @@ function p.render_xp_bar(wid)
         local frac = health / health_max
         quad_c(wid, 0+ 0.05, 0.07+0.03, 0.04+ 0.05, 0.11+0.03, "icon_health")
         bar_c(wid, 0.05+ 0.05, 0.07+0.03, 0.45, 0.1+0.03, {1, 0, 0, 1}, {0.2, 1, 0.2, 1}, math.min(frac, 1))
-        ga_win_set_char_size(wid, 0.012, 0.024)
         win_hud.txt_col(wid, std.vec(0, 0, 0))
         text_c(wid, 0.05+ 0.05, 0.07+0.03, ("%d / %d"):format(health, health_max))
         frac = frac - 1
@@ -43,7 +46,6 @@ function p.render_xp_bar(wid)
         local frac = armor / armor_max
         quad_c(wid, 0.96- 0.05, 0.07+0.03, 1- 0.05, 0.11+0.03, "icon_armor")
         bar_c(wid, 0.55, 0.07+0.03, 0.95- 0.05, 0.1+0.03, {0, 0, 0, 0.2}, {0.8, 0.8, 0.8, 1}, math.min(frac, 1))
-        ga_win_set_char_size(wid, 0.012, 0.024)
         win_hud.txt_col(wid, std.vec(0.1, 0.1, 0.1))
         text_c(wid, 0.55, 0.07+0.03, ("%d / %d"):format(armor, armor_max))
         frac = frac - 1
@@ -66,7 +68,8 @@ function p.render_xp_bar(wid)
         local frac = armor / armor_max
         quad_c(wid, 0.065, 0.07, 0.09, 0.095, "icon_shield")
         bar_c(wid, 0.1, 0.07, 0.9, 0.09, {0, 0, 0, 0.4}, {0.6, 0.6, 1, 1}, math.min(frac, 1))
-        ga_win_set_char_size(wid, 0.010, 0.020)
+
+        ga_win_set_char_size(wid, CHAR_WIDTH * 0.83333, RAW_CHAR_WIDTH * 2 * 0.83333)
         win_hud.txt_col(wid, std.vec(0.1, 0.1, 0.1))
         text_c(wid, 0.1, 0.07, ("%d / %d"):format(armor, armor_max))
     end

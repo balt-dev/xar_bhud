@@ -28,7 +28,7 @@ function p.render_markers(wid)
     if ga_get_b("xar.hud.show_markers") and (not game_genesis.enabled()) then
         win_hud.txt_col(wid, col)
         local short_str = game_str.make_3_digit_big(markers)
-        txt_r(wid, 
+        text_r(wid, 
             x_min + 0.5 * ammo_width,
             ammo_y_min + ammo_height,
             short_str)

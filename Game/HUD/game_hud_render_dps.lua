@@ -1,10 +1,14 @@
 function p.render_dps(wid)
+    local aspect = ga_get_sys_f("display.camera_params.a_ratio.value")
+    local RAW_CHAR_WIDTH = 0.02
+    local CHAR_WIDTH = RAW_CHAR_WIDTH / aspect
+    ga_win_set_char_size(wid, CHAR_WIDTH, RAW_CHAR_WIDTH*2)
+
     -- DPS (top middle of the screen).
     local in_dps = ga_get_sys_i("stats.in_dps")
     if( in_dps > 0 ) then
         local dps_str = "DPS: " .. game_str.add_commas(in_dps)
         ga_win_set_front_color(wid, std.vec(0.0, 1.0, 0.0))
-        ga_win_set_char_size(wid, 0.02, 0.03)
         ga_win_txt_center(wid, 0.87, dps_str)
     end
     local max_health = ga_get_i("xar.player.health.max")
